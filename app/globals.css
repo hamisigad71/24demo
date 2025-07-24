@@ -1,0 +1,209 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 210 40% 96%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+    --radius: 0.5rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Professional Color System - Red, Blue, White Mastery */
+.text-royal-blue {
+  color: #1e40af; /* Royal Blue - Authority & Trust */
+}
+.bg-royal-blue {
+  background-color: #1e40af;
+}
+
+.text-deep-navy {
+  color: #0f172a; /* Deep Navy - Ultimate Authority */
+}
+.bg-deep-navy {
+  background-color: #0f172a;
+}
+
+.text-crimson-red {
+  color: #dc2626; /* Perfect Crimson - Power & Action */
+}
+.bg-crimson-red {
+  background-color: #dc2626;
+}
+
+.text-ruby-red {
+  color: #b91c1c; /* Ruby Red - Elegant Accent */
+}
+.bg-ruby-red {
+  background-color: #b91c1c;
+}
+
+.text-pure-white {
+  color: #ffffff;
+}
+.bg-pure-white {
+  background-color: #ffffff;
+}
+
+.text-platinum {
+  color: #f8fafc; /* Platinum - Sophisticated Light */
+}
+.bg-platinum {
+  background-color: #f8fafc;
+}
+
+.text-steel-gray {
+  color: #64748b; /* Steel Gray - Professional Balance */
+}
+.bg-steel-gray {
+  background-color: #64748b;
+}
+
+.text-charcoal {
+  color: #374151; /* Charcoal - Refined Dark */
+}
+.bg-charcoal {
+  background-color: #374151;
+}
+
+/* Gradient Backgrounds */
+.bg-patriot-gradient {
+  background: linear-gradient(135deg, #0f172a 0%, #1e40af 50%, #dc2626 100%);
+}
+
+.bg-authority-gradient {
+  background: linear-gradient(135deg, #1e40af 0%, #0f172a 100%);
+}
+
+.bg-power-gradient {
+  background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+}
+
+.bg-elegant-gradient {
+  background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
+}
+
+/* Advanced Shadows */
+.shadow-royal {
+  box-shadow: 0 25px 50px -12px rgba(30, 64, 175, 0.25);
+}
+
+.shadow-crimson {
+  box-shadow: 0 25px 50px -12px rgba(220, 38, 38, 0.25);
+}
+
+.shadow-elegant {
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.1);
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes pulse-glow {
+  0%,
+  100% {
+    box-shadow: 0 0 20px rgba(220, 38, 38, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(220, 38, 38, 0.5);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.animate-slide-in-right {
+  animation: slideInRight 0.6s ease-out;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f8fafc;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #1e40af, #dc2626);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, #0f172a, #b91c1c);
+}
+
+/* Hover Effects */
+.hover-lift {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hover-lift:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+/* Glass Effect */
+.glass-effect {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
