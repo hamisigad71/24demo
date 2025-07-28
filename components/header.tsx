@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Menu, X, Phone, Mail, Shield } from "lucide-react";
 import {
@@ -61,8 +60,8 @@ export function Header() {
 
   return (
     <>
-      {/* Top Contact Bar - Elegant Dark Blue */}
-      <div className="bg-gradient-to-r from-blue-900 to-blue-800 text-white py-2 px-4 text-sm">
+      {/* Top Contact Bar */}
+      <div className="bg-gradient-to-r from-blue-800 to-blue-900 text-white py-2 px-4 text-sm">
         <div className="container mx-auto flex flex-col md:flex-row justify-between items-center space-y-1 md:space-y-0">
           <div className="flex items-center space-x-4">
             <div className="flex items-center space-x-2 hover:text-blue-200 transition-colors">
@@ -81,34 +80,27 @@ export function Header() {
         </div>
       </div>
 
-      {/* Main Navigation - Professional with Logo */}
+      {/* Main Navigation */}
       <header
         className={`sticky top-0 z-50 transition-all duration-300 ${
-          isScrolled ? "bg-white shadow-lg" : "bg-white/95 backdrop-blur-sm"
+          isScrolled ? "bg-white shadow-md" : "bg-white/95 backdrop-blur-sm"
         }`}
       >
         <div className="container mx-auto px-4">
-          <div className="flex items-center justify-between h-20">
-            {/* Logo with Creative Styling */}
-            <Link href="/" className="flex items-center group">
-              <div className="relative h-16 w-48">
-                <Image
-                  src="https://www.milleradvocates.com/sites/default/files/miller_logo-01.png"
-                  alt="Miller Advocates Logo"
-                  fill
-                  className="object-contain object-left transition-all group-hover:scale-105"
-                  priority
-                />
-              </div>
-              <span className="sr-only">Miller Advocates</span>
+          <div className="flex items-center justify-between h-16">
+            {/* Logo */}
+            <Link href="/" className="flex items-center">
+              <span className="text-2xl font-bold text-blue-800">
+                Miller & Associates
+              </span>
             </Link>
 
             {/* Desktop Navigation */}
             <NavigationMenu className="hidden lg:flex">
-              <NavigationMenuList className="space-x-2">
+              <NavigationMenuList className="space-x-1">
                 <NavigationMenuItem>
                   <Link href="/" legacyBehavior passHref>
-                    <NavigationMenuLink className="px-4 py-2 text-gray-800 hover:text-blue-700 font-medium rounded-lg transition-colors hover:bg-blue-50">
+                    <NavigationMenuLink className="px-4 py-2 text-gray-800 hover:text-blue-600 font-medium rounded-lg transition-colors">
                       Home
                     </NavigationMenuLink>
                   </Link>
@@ -116,30 +108,27 @@ export function Header() {
 
                 <NavigationMenuItem>
                   <Link href="/about" legacyBehavior passHref>
-                    <NavigationMenuLink className="px-4 py-2 text-gray-800 hover:text-blue-700 font-medium rounded-lg transition-colors hover:bg-blue-50">
+                    <NavigationMenuLink className="px-4 py-2 text-gray-800 hover:text-blue-600 font-medium rounded-lg transition-colors">
                       About
                     </NavigationMenuLink>
                   </Link>
                 </NavigationMenuItem>
 
                 <NavigationMenuItem>
-                  <NavigationMenuTrigger className="text-gray-800 hover:text-blue-700 font-medium data-[state=open]:text-blue-700 bg-transparent hover:bg-blue-50">
+                  <NavigationMenuTrigger className="text-gray-800 hover:text-blue-600 font-medium data-[state=open]:text-blue-600">
                     Practice Areas
                   </NavigationMenuTrigger>
                   <NavigationMenuContent>
-                    <div className="grid w-[500px] grid-cols-2 gap-3 p-4 bg-white shadow-xl rounded-lg border border-gray-200">
+                    <div className="grid w-[500px] grid-cols-2 gap-3 p-4 bg-white shadow-lg rounded-lg border border-gray-100">
                       {practiceAreas.map((area) => (
                         <Link
                           key={area.name}
                           href={area.href}
-                          className="p-3 rounded-lg hover:bg-blue-50 transition-all duration-300 group"
+                          className="p-3 rounded-md hover:bg-blue-50 transition-colors group"
                         >
-                          <h3 className="font-medium text-gray-800 group-hover:text-blue-700">
+                          <h3 className="font-medium text-gray-800 group-hover:text-blue-600">
                             {area.name}
                           </h3>
-                          <p className="text-sm text-gray-500 mt-1 group-hover:text-gray-600">
-                            Expert legal representation
-                          </p>
                         </Link>
                       ))}
                     </div>
@@ -148,7 +137,7 @@ export function Header() {
 
                 <NavigationMenuItem>
                   <Link href="/team" legacyBehavior passHref>
-                    <NavigationMenuLink className="px-4 py-2 text-gray-800 hover:text-blue-700 font-medium rounded-lg transition-colors hover:bg-blue-50">
+                    <NavigationMenuLink className="px-4 py-2 text-gray-800 hover:text-blue-600 font-medium rounded-lg transition-colors">
                       Our Team
                     </NavigationMenuLink>
                   </Link>
@@ -156,15 +145,15 @@ export function Header() {
 
                 <NavigationMenuItem>
                   <Link href="/case-studies" legacyBehavior passHref>
-                    <NavigationMenuLink className="px-4 py-2 text-gray-800 hover:text-blue-700 font-medium rounded-lg transition-colors hover:bg-blue-50">
-                      Case Studies
+                    <NavigationMenuLink className="px-4 py-2 text-gray-800 hover:text-blue-600 font-medium rounded-lg transition-colors">
+                      Cases
                     </NavigationMenuLink>
                   </Link>
                 </NavigationMenuItem>
 
                 <NavigationMenuItem>
                   <Link href="/contact" legacyBehavior passHref>
-                    <NavigationMenuLink className="px-4 py-2 text-gray-800 hover:text-blue-700 font-medium rounded-lg transition-colors hover:bg-blue-50">
+                    <NavigationMenuLink className="px-4 py-2 text-gray-800 hover:text-blue-600 font-medium rounded-lg transition-colors">
                       Contact
                     </NavigationMenuLink>
                   </Link>
@@ -177,7 +166,7 @@ export function Header() {
               {user ? (
                 <div className="flex items-center space-x-3">
                   <div className="flex items-center space-x-2">
-                    <div className="w-8 h-8 bg-blue-700 rounded-full flex items-center justify-center text-white text-sm font-medium">
+                    <div className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center text-white text-sm font-medium">
                       {user.name.charAt(0).toUpperCase()}
                     </div>
                     <span className="text-sm font-medium text-gray-700">
@@ -186,7 +175,7 @@ export function Header() {
                   </div>
                   <Button
                     variant="outline"
-                    className="border-blue-700 text-blue-700 hover:bg-blue-700 hover:text-white"
+                    className="border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white"
                     onClick={handleLogout}
                   >
                     Logout
@@ -197,13 +186,13 @@ export function Header() {
                   <Link href="/login">
                     <Button
                       variant="outline"
-                      className="border-blue-700 text-blue-700 hover:bg-blue-50"
+                      className="border-blue-600 text-blue-600 hover:bg-blue-50"
                     >
-                      Client Login
+                      Login
                     </Button>
                   </Link>
                   <Link href="/register">
-                    <Button className="bg-blue-700 hover:bg-blue-800 text-white">
+                    <Button className="bg-blue-600 hover:bg-blue-700 text-white">
                       Register
                     </Button>
                   </Link>
@@ -213,7 +202,7 @@ export function Header() {
 
             {/* Mobile Menu Button */}
             <button
-              className="lg:hidden p-2 text-gray-800 hover:text-blue-700 transition-colors"
+              className="lg:hidden p-2 text-gray-800 hover:text-blue-600 transition-colors"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             >
               {isMobileMenuOpen ? (
@@ -228,31 +217,31 @@ export function Header() {
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
           <div className="lg:hidden bg-white border-t shadow-inner">
-            <div className="container mx-auto px-4 py-3 space-y-3">
+            <div className="container mx-auto px-4 py-3 space-y-2">
               <Link
                 href="/"
-                className="block py-3 px-4 text-gray-800 hover:bg-blue-50 rounded-lg transition-colors font-medium"
+                className="block py-2 px-3 text-gray-800 hover:bg-blue-50 rounded-md transition-colors"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 Home
               </Link>
               <Link
                 href="/about"
-                className="block py-3 px-4 text-gray-800 hover:bg-blue-50 rounded-lg transition-colors font-medium"
+                className="block py-2 px-3 text-gray-800 hover:bg-blue-50 rounded-md transition-colors"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 About
               </Link>
-              <div className="py-3 px-4">
-                <div className="font-medium text-gray-800 mb-2">
+              <div className="py-2 px-3">
+                <div className="font-medium text-gray-800 mb-1">
                   Practice Areas
                 </div>
-                <div className="pl-4 space-y-2">
+                <div className="pl-3 space-y-1">
                   {practiceAreas.map((area) => (
                     <Link
                       key={area.name}
                       href={area.href}
-                      className="block py-2 text-gray-600 hover:text-blue-700 hover:bg-blue-50 rounded-md transition-colors pl-3"
+                      className="block py-1.5 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors pl-2"
                       onClick={() => setIsMobileMenuOpen(false)}
                     >
                       {area.name}
@@ -262,42 +251,42 @@ export function Header() {
               </div>
               <Link
                 href="/team"
-                className="block py-3 px-4 text-gray-800 hover:bg-blue-50 rounded-lg transition-colors font-medium"
+                className="block py-2 px-3 text-gray-800 hover:bg-blue-50 rounded-md transition-colors"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 Our Team
               </Link>
               <Link
                 href="/case-studies"
-                className="block py-3 px-4 text-gray-800 hover:bg-blue-50 rounded-lg transition-colors font-medium"
+                className="block py-2 px-3 text-gray-800 hover:bg-blue-50 rounded-md transition-colors"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
-                Case Studies
+                Cases
               </Link>
               <Link
                 href="/contact"
-                className="block py-3 px-4 text-gray-800 hover:bg-blue-50 rounded-lg transition-colors font-medium"
+                className="block py-2 px-3 text-gray-800 hover:bg-blue-50 rounded-md transition-colors"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 Contact
               </Link>
 
-              <div className="pt-4 space-y-3 border-t mt-2">
+              <div className="pt-2 space-y-2 border-t mt-2">
                 {user ? (
-                  <div className="space-y-3">
-                    <div className="flex items-center space-x-3 p-3 bg-blue-50 rounded-lg">
-                      <div className="w-10 h-10 bg-blue-700 rounded-full flex items-center justify-center text-white font-medium">
+                  <div className="space-y-2">
+                    <div className="flex items-center space-x-2 p-2 bg-blue-50 rounded-md">
+                      <div className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center text-white text-sm font-medium">
                         {user.name.charAt(0).toUpperCase()}
                       </div>
                       <div>
-                        <div className="font-medium">{user.name}</div>
-                        <div className="text-sm text-gray-500">
+                        <div className="text-sm font-medium">{user.name}</div>
+                        <div className="text-xs text-gray-500">
                           {user.email}
                         </div>
                       </div>
                     </div>
                     <Button
-                      className="w-full bg-blue-700 hover:bg-blue-800 text-white"
+                      className="w-full bg-blue-600 hover:bg-blue-700 text-white"
                       onClick={() => {
                         handleLogout();
                         setIsMobileMenuOpen(false);
@@ -307,11 +296,11 @@ export function Header() {
                     </Button>
                   </div>
                 ) : (
-                  <div className="grid grid-cols-2 gap-3">
+                  <div className="grid grid-cols-2 gap-2">
                     <Link href="/login" className="block">
                       <Button
                         variant="outline"
-                        className="w-full border-blue-700 text-blue-700 hover:bg-blue-50"
+                        className="w-full border-blue-600 text-blue-600 hover:bg-blue-50"
                         onClick={() => setIsMobileMenuOpen(false)}
                       >
                         Login
@@ -319,7 +308,7 @@ export function Header() {
                     </Link>
                     <Link href="/register" className="block">
                       <Button
-                        className="w-full bg-blue-700 hover:bg-blue-800 text-white"
+                        className="w-full bg-blue-600 hover:bg-blue-700 text-white"
                         onClick={() => setIsMobileMenuOpen(false)}
                       >
                         Register
