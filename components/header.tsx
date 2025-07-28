@@ -1,9 +1,10 @@
-"use client"
+"use client";
 
-import { useState, useEffect } from "react"
-import Link from "next/link"
-import { Button } from "@/components/ui/button"
-import { Menu, X, Phone, Mail, Shield } from "lucide-react"
+import { useState, useEffect } from "react";
+import Link from "next/link";
+import Image from "next/image";
+import { Button } from "@/components/ui/button";
+import { Menu, X, Phone, Mail, Shield } from "lucide-react";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -11,43 +12,43 @@ import {
   NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuTrigger,
-} from "@/components/ui/navigation-menu"
+} from "@/components/ui/navigation-menu";
 
 export function Header() {
-  const [isScrolled, setIsScrolled] = useState(false)
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
-  const [user, setUser] = useState<{ email: string; name: string } | null>(null)
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [user, setUser] = useState<{ email: string; name: string } | null>(
+    null
+  );
 
   useEffect(() => {
-    // Check if user is logged in
-    const isLoggedIn = localStorage.getItem("isLoggedIn")
-    const userEmail = localStorage.getItem("userEmail")
-    const userName = localStorage.getItem("userName")
+    const isLoggedIn = localStorage.getItem("isLoggedIn");
+    const userEmail = localStorage.getItem("userEmail");
+    const userName = localStorage.getItem("userName");
 
     if (isLoggedIn) {
       setUser({
         email: userEmail || "",
         name: userName || userEmail || "User",
-      })
+      });
     }
-  }, [])
+  }, []);
 
   const handleLogout = () => {
-    localStorage.removeItem("isLoggedIn")
-    localStorage.removeItem("userEmail")
-    localStorage.removeItem("userName")
-    setUser(null)
-    // Optionally redirect to home
-    window.location.href = "/"
-  }
+    localStorage.removeItem("isLoggedIn");
+    localStorage.removeItem("userEmail");
+    localStorage.removeItem("userName");
+    setUser(null);
+    window.location.href = "/";
+  };
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50)
-    }
-    window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
+      setIsScrolled(window.scrollY > 50);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const practiceAreas = [
     { name: "Criminal Law", href: "/practice-areas/criminal-law" },
@@ -56,47 +57,58 @@ export function Header() {
     { name: "Real Estate Law", href: "/practice-areas/real-estate-law" },
     { name: "Immigration", href: "/practice-areas/immigration" },
     { name: "Employment & Labor Law", href: "/practice-areas/employment-law" },
-  ]
+  ];
 
   return (
     <>
-      {/* Top Bar - Elegant Gradient */}
-      <div className="bg-authority-gradient text-pure-white py-3 px-4 text-sm shadow-lg">
-        <div className="container mx-auto flex justify-between items-center">
-          <div className="flex items-center space-x-6">
-            <div className="flex items-center space-x-2 hover:text-platinum transition-colors">
+      {/* Top Contact Bar - Elegant Dark Blue */}
+      <div className="bg-gradient-to-r from-blue-900 to-blue-800 text-white py-2 px-4 text-sm">
+        <div className="container mx-auto flex flex-col md:flex-row justify-between items-center space-y-1 md:space-y-0">
+          <div className="flex items-center space-x-4">
+            <div className="flex items-center space-x-2 hover:text-blue-200 transition-colors">
               <Phone className="h-4 w-4" />
-              <span className="font-medium">+254 (755) 123-4567</span>
+              <span>+254 (755) 123-4567</span>
             </div>
-            <div className="flex items-center space-x-2 hover:text-platinum transition-colors">
+            <div className="flex items-center space-x-2 hover:text-blue-200 transition-colors">
               <Mail className="h-4 w-4" />
-              <span className="font-medium">miller@milleradvocatecom</span>
+              <span>miller@milleradvocate.com</span>
             </div>
           </div>
-          <div className="hidden md:flex items-center space-x-2">
-            <Shield className="h-4 w-4 text-platinum" />
-            <span className="font-semibold">Free Confidential Consultation</span>
+          <div className="flex items-center space-x-2 text-blue-200">
+            <Shield className="h-4 w-4" />
+            <span>Free Confidential Consultation</span>
           </div>
         </div>
       </div>
 
-      {/* Main Header - Glass Effect */}
+      {/* Main Navigation - Professional with Logo */}
       <header
-        className={`sticky top-0 z-50 transition-all duration-500 ${
-          isScrolled ? "glass-effect shadow-elegant backdrop-blur-xl" : "bg-pure-white shadow-lg"
+        className={`sticky top-0 z-50 transition-all duration-300 ${
+          isScrolled ? "bg-white shadow-lg" : "bg-white/95 backdrop-blur-sm"
         }`}
       >
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between h-20">
-            {/* Logo - Enhanced */}
-          
+            {/* Logo with Creative Styling */}
+            <Link href="/" className="flex items-center group">
+              <div className="relative h-16 w-48">
+                <Image
+                  src="https://www.milleradvocates.com/sites/default/files/miller_logo-01.png"
+                  alt="Miller Advocates Logo"
+                  fill
+                  className="object-contain object-left transition-all group-hover:scale-105"
+                  priority
+                />
+              </div>
+              <span className="sr-only">Miller Advocates</span>
+            </Link>
 
-            {/* Desktop Navigation - Enhanced */}
+            {/* Desktop Navigation */}
             <NavigationMenu className="hidden lg:flex">
               <NavigationMenuList className="space-x-2">
                 <NavigationMenuItem>
                   <Link href="/" legacyBehavior passHref>
-                    <NavigationMenuLink className="px-4 py-2 text-deep-navy hover:text-crimson-red font-semibold transition-all duration-300 hover:bg-platinum rounded-lg">
+                    <NavigationMenuLink className="px-4 py-2 text-gray-800 hover:text-blue-700 font-medium rounded-lg transition-colors hover:bg-blue-50">
                       Home
                     </NavigationMenuLink>
                   </Link>
@@ -104,27 +116,30 @@ export function Header() {
 
                 <NavigationMenuItem>
                   <Link href="/about" legacyBehavior passHref>
-                    <NavigationMenuLink className="px-4 py-2 text-deep-navy hover:text-crimson-red font-semibold transition-all duration-300 hover:bg-platinum rounded-lg">
-                      About Us
+                    <NavigationMenuLink className="px-4 py-2 text-gray-800 hover:text-blue-700 font-medium rounded-lg transition-colors hover:bg-blue-50">
+                      About
                     </NavigationMenuLink>
                   </Link>
                 </NavigationMenuItem>
 
                 <NavigationMenuItem>
-                  <NavigationMenuTrigger className="text-deep-navy hover:text-crimson-red font-semibold">
+                  <NavigationMenuTrigger className="text-gray-800 hover:text-blue-700 font-medium data-[state=open]:text-blue-700 bg-transparent hover:bg-blue-50">
                     Practice Areas
                   </NavigationMenuTrigger>
                   <NavigationMenuContent>
-                    <div className="grid w-[600px] grid-cols-2 gap-3 p-6 bg-pure-white shadow-elegant rounded-xl">
+                    <div className="grid w-[500px] grid-cols-2 gap-3 p-4 bg-white shadow-xl rounded-lg border border-gray-200">
                       {practiceAreas.map((area) => (
                         <Link
                           key={area.name}
                           href={area.href}
-                          className="block p-4 rounded-lg hover:bg-platinum transition-all duration-300 hover:shadow-lg group"
+                          className="p-3 rounded-lg hover:bg-blue-50 transition-all duration-300 group"
                         >
-                          <h3 className="font-semibold text-deep-navy group-hover:text-crimson-red transition-colors">
+                          <h3 className="font-medium text-gray-800 group-hover:text-blue-700">
                             {area.name}
                           </h3>
+                          <p className="text-sm text-gray-500 mt-1 group-hover:text-gray-600">
+                            Expert legal representation
+                          </p>
                         </Link>
                       ))}
                     </div>
@@ -133,7 +148,7 @@ export function Header() {
 
                 <NavigationMenuItem>
                   <Link href="/team" legacyBehavior passHref>
-                    <NavigationMenuLink className="px-4 py-2 text-deep-navy hover:text-crimson-red font-semibold transition-all duration-300 hover:bg-platinum rounded-lg">
+                    <NavigationMenuLink className="px-4 py-2 text-gray-800 hover:text-blue-700 font-medium rounded-lg transition-colors hover:bg-blue-50">
                       Our Team
                     </NavigationMenuLink>
                   </Link>
@@ -141,7 +156,7 @@ export function Header() {
 
                 <NavigationMenuItem>
                   <Link href="/case-studies" legacyBehavior passHref>
-                    <NavigationMenuLink className="px-4 py-2 text-deep-navy hover:text-crimson-red font-semibold transition-all duration-300 hover:bg-platinum rounded-lg">
+                    <NavigationMenuLink className="px-4 py-2 text-gray-800 hover:text-blue-700 font-medium rounded-lg transition-colors hover:bg-blue-50">
                       Case Studies
                     </NavigationMenuLink>
                   </Link>
@@ -149,7 +164,7 @@ export function Header() {
 
                 <NavigationMenuItem>
                   <Link href="/contact" legacyBehavior passHref>
-                    <NavigationMenuLink className="px-4 py-2 text-deep-navy hover:text-crimson-red font-semibold transition-all duration-300 hover:bg-platinum rounded-lg">
+                    <NavigationMenuLink className="px-4 py-2 text-gray-800 hover:text-blue-700 font-medium rounded-lg transition-colors hover:bg-blue-50">
                       Contact
                     </NavigationMenuLink>
                   </Link>
@@ -157,93 +172,88 @@ export function Header() {
               </NavigationMenuList>
             </NavigationMenu>
 
-            {/* CTA Buttons - Show different content based on login status */}
+            {/* Auth Buttons */}
             <div className="hidden lg:flex items-center space-x-3">
               {user ? (
-                // Logged in user menu
-                <>
-                  <div className="flex items-center space-x-3 px-4 py-2 bg-platinum rounded-lg">
-                    <div className="w-8 h-8 bg-authority-gradient rounded-full flex items-center justify-center">
-                      <span className="text-pure-white text-sm font-bold">{user.name.charAt(0).toUpperCase()}</span>
+                <div className="flex items-center space-x-3">
+                  <div className="flex items-center space-x-2">
+                    <div className="w-8 h-8 bg-blue-700 rounded-full flex items-center justify-center text-white text-sm font-medium">
+                      {user.name.charAt(0).toUpperCase()}
                     </div>
-                    <div>
-                      <p className="text-sm font-semibold text-deep-navy">Welcome back</p>
-                      <p className="text-xs text-steel-gray">{user.name}</p>
-                    </div>
+                    <span className="text-sm font-medium text-gray-700">
+                      {user.name}
+                    </span>
                   </div>
-                  <Link href="/client-portal">
-                    <Button
-                      variant="outline"
-                      className="border-2 border-royal-blue text-royal-blue hover:bg-royal-blue hover:text-pure-white font-semibold transition-all duration-300 hover:shadow-royal bg-transparent"
-                    >
-                      Dashboard
-                    </Button>
-                  </Link>
                   <Button
-                    onClick={handleLogout}
                     variant="outline"
-                    className="border-2 border-crimson-red text-crimson-red hover:bg-crimson-red hover:text-pure-white font-semibold transition-all duration-300 bg-transparent"
+                    className="border-blue-700 text-blue-700 hover:bg-blue-700 hover:text-white"
+                    onClick={handleLogout}
                   >
                     Logout
                   </Button>
-                </>
+                </div>
               ) : (
-                // Not logged in - show login/register buttons
                 <>
                   <Link href="/login">
                     <Button
                       variant="outline"
-                      className="border-2 border-royal-blue text-royal-blue hover:bg-royal-blue hover:text-pure-white font-semibold transition-all duration-300 hover:shadow-royal bg-transparent"
+                      className="border-blue-700 text-blue-700 hover:bg-blue-50"
                     >
                       Client Login
                     </Button>
                   </Link>
                   <Link href="/register">
-                    <Button className="bg-power-gradient text-pure-white font-semibold hover:shadow-crimson transition-all duration-300 hover:scale-105 animate-pulse-glow">
-                      Create Account
+                    <Button className="bg-blue-700 hover:bg-blue-800 text-white">
+                      Register
                     </Button>
                   </Link>
-                  <Button className="bg-authority-gradient text-pure-white font-semibold hover:shadow-royal transition-all duration-300 hover:scale-105">
-                    Free Consultation
-                  </Button>
                 </>
               )}
             </div>
 
             {/* Mobile Menu Button */}
             <button
-              className="lg:hidden p-2 text-deep-navy hover:text-crimson-red transition-colors"
+              className="lg:hidden p-2 text-gray-800 hover:text-blue-700 transition-colors"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             >
-              {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+              {isMobileMenuOpen ? (
+                <X className="h-6 w-6" />
+              ) : (
+                <Menu className="h-6 w-6" />
+              )}
             </button>
           </div>
         </div>
 
-        {/* Mobile Menu - Enhanced */}
+        {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <div className="lg:hidden bg-pure-white border-t shadow-elegant">
-            <div className="container mx-auto px-4 py-6 space-y-4">
+          <div className="lg:hidden bg-white border-t shadow-inner">
+            <div className="container mx-auto px-4 py-3 space-y-3">
               <Link
                 href="/"
-                className="block py-3 text-deep-navy hover:text-crimson-red font-semibold transition-colors"
+                className="block py-3 px-4 text-gray-800 hover:bg-blue-50 rounded-lg transition-colors font-medium"
+                onClick={() => setIsMobileMenuOpen(false)}
               >
                 Home
               </Link>
               <Link
                 href="/about"
-                className="block py-3 text-deep-navy hover:text-crimson-red font-semibold transition-colors"
+                className="block py-3 px-4 text-gray-800 hover:bg-blue-50 rounded-lg transition-colors font-medium"
+                onClick={() => setIsMobileMenuOpen(false)}
               >
-                About Us
+                About
               </Link>
-              <div>
-                <div className="py-3 text-deep-navy font-bold">Practice Areas</div>
+              <div className="py-3 px-4">
+                <div className="font-medium text-gray-800 mb-2">
+                  Practice Areas
+                </div>
                 <div className="pl-4 space-y-2">
                   {practiceAreas.map((area) => (
                     <Link
                       key={area.name}
                       href={area.href}
-                      className="block py-2 text-steel-gray hover:text-crimson-red transition-colors"
+                      className="block py-2 text-gray-600 hover:text-blue-700 hover:bg-blue-50 rounded-md transition-colors pl-3"
+                      onClick={() => setIsMobileMenuOpen(false)}
                     >
                       {area.name}
                     </Link>
@@ -252,66 +262,70 @@ export function Header() {
               </div>
               <Link
                 href="/team"
-                className="block py-3 text-deep-navy hover:text-crimson-red font-semibold transition-colors"
+                className="block py-3 px-4 text-gray-800 hover:bg-blue-50 rounded-lg transition-colors font-medium"
+                onClick={() => setIsMobileMenuOpen(false)}
               >
                 Our Team
               </Link>
               <Link
                 href="/case-studies"
-                className="block py-3 text-deep-navy hover:text-crimson-red font-semibold transition-colors"
+                className="block py-3 px-4 text-gray-800 hover:bg-blue-50 rounded-lg transition-colors font-medium"
+                onClick={() => setIsMobileMenuOpen(false)}
               >
                 Case Studies
               </Link>
               <Link
-                href="/contact-cta.tsx"
-                className="block py-3 text-deep-navy hover:text-crimson-red font-semibold transition-colors"
+                href="/contact"
+                className="block py-3 px-4 text-gray-800 hover:bg-blue-50 rounded-lg transition-colors font-medium"
+                onClick={() => setIsMobileMenuOpen(false)}
               >
                 Contact
               </Link>
 
-              <div className="pt-4 space-y-3">
+              <div className="pt-4 space-y-3 border-t mt-2">
                 {user ? (
-                  // Mobile logged in menu
-                  <>
-                    <div className="flex items-center space-x-3 p-3 bg-platinum rounded-lg">
-                      <div className="w-10 h-10 bg-authority-gradient rounded-full flex items-center justify-center">
-                        <span className="text-pure-white font-bold">{user.name.charAt(0).toUpperCase()}</span>
+                  <div className="space-y-3">
+                    <div className="flex items-center space-x-3 p-3 bg-blue-50 rounded-lg">
+                      <div className="w-10 h-10 bg-blue-700 rounded-full flex items-center justify-center text-white font-medium">
+                        {user.name.charAt(0).toUpperCase()}
                       </div>
                       <div>
-                        <p className="font-semibold text-deep-navy">{user.name}</p>
-                        <p className="text-sm text-steel-gray">{user.email}</p>
+                        <div className="font-medium">{user.name}</div>
+                        <div className="text-sm text-gray-500">
+                          {user.email}
+                        </div>
                       </div>
                     </div>
-                    <Link href="/client-portal" className="block">
-                      <Button className="w-full bg-authority-gradient text-pure-white font-semibold">
-                        Go to Dashboard
-                      </Button>
-                    </Link>
                     <Button
-                      onClick={handleLogout}
-                      className="w-full bg-crimson-red hover:bg-crimson-red/90 text-pure-white font-semibold"
+                      className="w-full bg-blue-700 hover:bg-blue-800 text-white"
+                      onClick={() => {
+                        handleLogout();
+                        setIsMobileMenuOpen(false);
+                      }}
                     >
                       Logout
                     </Button>
-                  </>
+                  </div>
                 ) : (
-                  // Mobile not logged in menu
-                  <>
+                  <div className="grid grid-cols-2 gap-3">
                     <Link href="/login" className="block">
                       <Button
                         variant="outline"
-                        className="w-full border-2 border-royal-blue text-royal-blue hover:bg-royal-blue hover:text-pure-white font-semibold bg-transparent"
+                        className="w-full border-blue-700 text-blue-700 hover:bg-blue-50"
+                        onClick={() => setIsMobileMenuOpen(false)}
                       >
-                        Client Login
+                        Login
                       </Button>
                     </Link>
                     <Link href="/register" className="block">
-                      <Button className="w-full bg-power-gradient text-pure-white font-semibold">Create Account</Button>
+                      <Button
+                        className="w-full bg-blue-700 hover:bg-blue-800 text-white"
+                        onClick={() => setIsMobileMenuOpen(false)}
+                      >
+                        Register
+                      </Button>
                     </Link>
-                    <Button className="w-full bg-authority-gradient text-pure-white font-semibold">
-                      Free Consultation
-                    </Button>
-                  </>
+                  </div>
                 )}
               </div>
             </div>
@@ -319,5 +333,5 @@ export function Header() {
         )}
       </header>
     </>
-  )
+  );
 }
